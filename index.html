@@ -19,20 +19,28 @@
             name: "Bilaval",
             age: 20
         }
-        handleClick(e){
-            console.log(e.target);
+
+        handleChange = (e) =>{
+            this.setState({
+                name: e.target.value
+            });
         }
-        handleCopy(e){
-            alert("Try to be original for once!");
+
+        handleSubmit = (e) =>{
+            e.preventDefault(); //prevents the default action from happpening, i.e refreshing tha page 
+            console.log(this.state.name);
         }
+        
+        // built-in react function
         render(){
             return(
                 // cant use class, since it is a keyword in javascript
                 <div className="app-content">
-                    <h1>Hey ninjas!</h1>
-                    <p>Hey this is {this.state.name} and you are not watching disney channel boo</p>
-                    <button onClick={this.handleClick}>Click me</button>
-                    <p onCopy={this.handleCopy}>You can copy this if you want</p>
+                    <h1>Hey, this is {this.state.name}</h1>
+                    <form onSubmit={this.handleSubmit}>
+                        <input type="text" onChange={this.handleChange}/>
+                        <button>Submit</button>
+                    </form>
                 </div>
             )
         }
